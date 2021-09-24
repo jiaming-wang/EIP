@@ -51,7 +51,7 @@ class Solver(BaseSolver):
         self.lr = lr
         self.file_name = file_name
 
-        self.noise_init = get_noise(32, 'noise', (48*4, 48*4))
+        self.noise_init = get_noise(32, 'noise', (self.cfg['data']['patch_size']*self.cfg['data']['upsacle'], self.cfg['data']['patch_size']*self.cfg['data']['upsacle']))
         self.noise =  self.noise_init.detach().clone()
 
         self.optimizer = maek_optimizer(self.cfg['schedule']['optimizer'], cfg, self.model.parameters())
@@ -91,7 +91,7 @@ class Solver(BaseSolver):
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
         
-        save_fn = save_dir +'/'+ img_namezhengru 
+        save_fn = save_dir +'/'+ img_name
         cv2.imwrite(save_fn, cv2.cvtColor(save_img*255, cv2.COLOR_BGR2RGB),  [cv2.IMWRITE_PNG_COMPRESSION, 0])
 
     def check_gpu(self):

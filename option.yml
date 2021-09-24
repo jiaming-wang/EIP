@@ -18,6 +18,9 @@ data_dir: ./dataset
 train_dataset: hr
 train_dataset_ref: ref
 
+test:
+  type: test
+
 pretrain:
   pretrained: False
   pre_sr: 1592134968/best.pth
